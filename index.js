@@ -33,7 +33,7 @@ mongoose
 // Root Routes
 // -----------------------
 app.get('/', (req, res) => {
-  res.send('<h1 style="font-size: 36px; text-align: left; margin: 15px">Hey Dev, Welcome to Social_Complex API Server!</h1> </br> <h2 style="font-size: 24px; text-align: left; margin: 15px">Please use the following routes to access the API:</h2> </br> <h3 style="font-size: 18px; text-align: left; margin: 15px">/api/v1/users</h3> </br> <h3 style="font-size: 18px; text-align: left; margin: 15px">/api/v1/posts</h3>');
+  res.send('<h1 style="font-size: 36px; text-align: left; margin: 15px">Hey Dev, Welcome to Social_Complex API Server!</h1> </br> <h2 style="font-size: 24px; text-align: left; margin: 15px">Please use the following routes to access the API:</h2> <h3 style="font-size: 18px; text-align: left; margin: 15px; color: red;">/api/v1/</h3> ');
 });
 // ----------------------
 app.use('/api/v1/users', userRoutes);
