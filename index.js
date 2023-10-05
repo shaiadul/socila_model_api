@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import express from 'express';
 import bodyParser from 'body-parser';
 import swaggerJSDoc from 'swagger-jsdoc';
+import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
 import userRoutes from './routes/userRoutes.js';
 import postRoutes from './routes/postRoutes.js';
@@ -13,6 +14,7 @@ const PORT = 9000;
 const mongoURI = `mongodb+srv://mdshaiadul:vXorG5jxgJlqGOSh@shaiadulstors.qvpid5t.mongodb.net/basic_db?retryWrites=true&w=majority`;
 
 // Middleware
+app.use(cors());
 app.use(bodyParser.json());
 // Connect to MongoDB 
 mongoose
@@ -68,7 +70,7 @@ const option = {
        description: 'Development server',
      },
      {
-        url: 'http://crimson-anemone-vest.cyclic.app',
+        url: 'https://crimson-anemone-vest.cyclic.app',
         description: 'Production server',
      }
    ],
