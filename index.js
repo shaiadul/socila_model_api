@@ -33,7 +33,8 @@ mongoose
 // Root Routes
 // -----------------------
 app.get('/', (req, res) => {
-  res.send('Hey Dev, Welcome to Book Shop API Server !');
+  res.send(
+    '<h1>Hey Dev, Welcome to Book Shop API Server ! </h1>');
 });
 // ----------------------
 app.use('/api/v1/users', userRoutes);
