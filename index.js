@@ -68,7 +68,7 @@ const option = {
        description: 'Development server',
      },
      {
-        url: 'https://crimson-anemone-vest.cyclic.app',
+        url: 'http://crimson-anemone-vest.cyclic.app',
         description: 'Production server',
      }
    ],
