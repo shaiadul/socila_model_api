@@ -53,13 +53,112 @@
  *         description: Internal server error
  */
 
+/**
+ * @swagger
+ * /api/v1/users/get:
+ *   get:
+ *     summary: Get all users
+ *     tags:
+ *       - Users
+ *     responses:
+ *       200:
+ *         description: List of users retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/User'
+ *       500:
+ *         description: Internal server error
+ */
+/**
+ * @swagger
+ * /api/v1/users/get/{userId}:
+ *   get:
+ *     summary: Get a user by ID
+ *     tags:
+ *       - Users
+ *     parameters:
+ *       - name: userId
+ *         in: path
+ *         description: ID of the user to retrieve
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: User retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Internal server error
+ */
+/**
+ * @swagger
+ * /api/v1/users/delete/{userId}:
+ *   delete:
+ *     summary: Delete a user by ID
+ *     tags:
+ *       - Users
+ *     parameters:
+ *       - name: userId
+ *         in: path
+ *         description: ID of the user to delete
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       204:
+ *         description: User deleted successfully
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Internal server error
+ */
+/**
+ * @swagger
+ * /api/v1/users/update/{userId}:
+ *   patch:
+ *     summary: Update a user by ID
+ *     tags:
+ *       - Users
+ *     parameters:
+ *       - name: userId
+ *         in: path
+ *         description: ID of the user to update
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       description: New user data to update
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User' # Replace with the schema for user data
+ *     responses:
+ *       200:
+ *         description: User updated successfully
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Internal server error
+ */
 
 import  express  from "express";
-import { createUser } from "../controller/userController.js";
+import { createUser, deleteUserById, getAllUsers, getUserById, updateUserById } from "../controller/userController.js";
 
 const userRoutes = express.Router();
 
-// post request for create user
 userRoutes.post('/create', createUser);
+userRoutes.get('/get', getAllUsers);
+userRoutes.get('/get/:id', getUserById);
+userRoutes.delete('/delete/:id', deleteUserById);
+userRoutes.patch('/update/:id', updateUserById);
 
 export default userRoutes;
