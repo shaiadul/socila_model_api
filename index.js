@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 import express from 'express';
 import bodyParser from 'body-parser';
+import swaggerJSDoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
 import userRoutes from './routes/userRoutes.js';
 import postRoutes from './routes/postRoutes.js';
 
@@ -38,3 +40,43 @@ app.get('/', (req, res) => {
 // ----------------------
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/posts', postRoutes);
+
+
+
+
+
+
+
+// -----------------------
+// Swagger Setup
+// -----------------------
+const option = {
+  swaggerDefinition: {
+   openapi: '3.0.0',
+   info: {
+     title: 'Social_Complex API',
+     version: '1.0.0',
+     description: 'Social_Complex API Information Documentation ',
+     contact: {
+       name: 'Shaiadul Bashar',
+       email: 'mdshaiadul@gmail.com',
+      },
+    },
+   servers: [
+     {
+       url: 'http://localhost:9000',
+       description: 'Development server',
+     },
+     {
+        url: 'https://crimson-anemone-vest.cyclic.app/api/v1/',
+        description: 'Production server',
+     }
+   ],
+  },
+  apis: ['./routes/*.js'],
+};
+
+const space = swaggerJSDoc(option);
+
+app.use('/api/v1/api-docs', swaggerUi.serve, swaggerUi.setup(space));
+  
