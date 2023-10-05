@@ -1,8 +1,8 @@
-import mongoose from 'mongoose';
+import cors from 'cors';
 import express from 'express';
+import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import swaggerJSDoc from 'swagger-jsdoc';
-import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
 import userRoutes from './routes/userRoutes.js';
 import postRoutes from './routes/postRoutes.js';
@@ -37,7 +37,7 @@ mongoose
 // Root Routes
 // -----------------------
 app.get('/', (req, res) => {
-  res.send('<h1 style="font-size: 36px; text-align: left; margin: 15px">Hey Dev, Welcome to Social_Complex API Server!</h1> </br> <h2 style="font-size: 24px; text-align: left; margin: 15px">Please use the following routes to access the API:<span style="font-size: 30px; text-align: left; color: red; margin-left: 5px;">https://crimson-anemone-vest.cyclic.app/api/v1/</span></h2>  ');
+  res.send('<h1 style="font-size: 36px; text-align: left; margin: 15px">Hey Dev, Welcome to Social_Complex API Server!</h1> <span style="font-size: 30px; text-align: left; color: red; margin-left: 5px;">https://crimson-anemone-vest.cyclic.app/api/v1/</span>  ');
 });
 // ----------------------
 app.use('/api/v1/users', userRoutes);
