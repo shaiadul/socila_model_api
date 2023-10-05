@@ -45,7 +45,6 @@
  *         content:
  *           application/json:
  *             example:
- *               id: "3"
  *               name: "New User"
  *               email: "newuser@example.com"
  *       400:
