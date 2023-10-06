@@ -61,6 +61,47 @@
 
 /**
  * @swagger
+ * /api/v1/users/login:
+ *   post:
+ *     summary: Login as an existing user
+ *     tags:
+ *       - Users
+ *     requestBody:
+ *       description: User credentials for login
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 format: email
+ *                 example: "user@example.com"
+ *               password:
+ *                 type: string
+ *                 example: "123456"
+ *     responses:
+ *       200:
+ *         description: User logged in successfully
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: "Login successful"
+ *               user:
+ *                 name: "User Name"
+ *                 email: "user@example.com"
+ *                 status: "active"
+ *       400:
+ *         description: Bad request, invalid credentials
+ *       401:
+ *         description: Unauthorized, invalid email or password
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
+ * @swagger
  * /api/v1/users/get:
  *   get:
  *     summary: Get all users
@@ -157,11 +198,12 @@
  */
 
 import  express  from "express";
-import { createUser, deleteUserById, getAllUsers, getUserById, updateUserById } from "../controller/userController.js";
+import { createUser, deleteUserById, getAllUsers, getUserById, loginUser, updateUserById } from "../controller/userController.js";
 
 const userRoutes = express.Router();
 
 userRoutes.post('/create', createUser);
+userRoutes.post('/login', loginUser);
 userRoutes.get('/get', getAllUsers);
 userRoutes.get('/get/:id', getUserById);
 userRoutes.delete('/delete/:id', deleteUserById);

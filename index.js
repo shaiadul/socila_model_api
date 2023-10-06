@@ -1,4 +1,5 @@
 import cors from 'cors';
+import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
@@ -11,7 +12,8 @@ import postRoutes from './routes/postRoutes.js';
 
 const app = express();
 const PORT = 9000;
-const mongoURI = `mongodb+srv://mdshaiadul:vXorG5jxgJlqGOSh@shaiadulstors.qvpid5t.mongodb.net/basic_db?retryWrites=true&w=majority`;
+dotenv.config();
+const mongoURI = `mongodb+srv://mdshaiadul:${process.env.MONGODB_PASSWORD}@shaiadulstors.qvpid5t.mongodb.net/${process.env.MONGODB_DB}?retryWrites=true&w=majority`;
 
 // Middleware
 app.use(cors());
