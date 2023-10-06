@@ -197,14 +197,16 @@
  *         description: Internal server error
  */
 
+
 import  express  from "express";
 import { createUser, deleteUserById, getAllUsers, getUserById, loginUser, updateUserById } from "../controller/userController.js";
+import { checkLogin } from "../middlewares/checkLogin.js";
 
 const userRoutes = express.Router();
 
 userRoutes.post('/create', createUser);
 userRoutes.post('/login', loginUser);
-userRoutes.get('/get', getAllUsers);
+userRoutes.get('/get', checkLogin, getAllUsers);
 userRoutes.get('/get/:id', getUserById);
 userRoutes.delete('/delete/:id', deleteUserById);
 userRoutes.patch('/update/:id', updateUserById);
