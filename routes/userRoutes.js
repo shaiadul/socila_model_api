@@ -8,7 +8,6 @@
  *         - name
  *         - email
  *         - password
- *         - status
  *       properties:
  *         name:
  *           type: string
@@ -19,9 +18,6 @@
  *         password:
  *           type: string
  *           description: Password of the user
- *         status:
- *           type: string
- *           description: Status of the user
  *      
  */
 
@@ -55,6 +51,8 @@
  *             example:
  *               name: "New User"
  *               email: "newuser@example.com"
+ *               password: "123456"
+ *               status: "active"
  *       400:
  *         description: Bad request, invalid user data
  *       500:
