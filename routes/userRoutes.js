@@ -7,6 +7,8 @@
  *       required:
  *         - name
  *         - email
+ *         - password
+ *         - status
  *       properties:
  *         name:
  *           type: string
@@ -14,6 +16,12 @@
  *         email:
  *           type: string
  *           description: Email of the user
+ *         password:
+ *           type: string
+ *           description: Password of the user
+ *         status:
+ *           type: string
+ *           description: Status of the user
  *      
  */
 

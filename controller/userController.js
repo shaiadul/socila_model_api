@@ -1,4 +1,3 @@
-import e from "express";
 import User from "../model/userModels.js";
 
 export const createUser = async (req, res) => {
@@ -44,7 +43,9 @@ export const updateUserById = async (req, res) => {
         const userId = req.params.id;
         const updatedUserData = {
             name: req.body.name, 
-            email: req.body.email, 
+            email: req.body.email,
+            password: req.body.password,
+            status: req.body.status,
         };
 
         const updatedUser = await User.findByIdAndUpdate(userId, updatedUserData, { new: true });
