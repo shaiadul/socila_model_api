@@ -80,7 +80,7 @@
  *                 example: "user@gmail.com"
  *               password:
  *                 type: string
- *                 example: "*****"
+ *                 example: "123456"
  *     responses:
  *       200:
  *         description: User logged in successfully
