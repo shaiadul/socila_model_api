@@ -48,9 +48,6 @@ app.use('/api/v1/posts', postRoutes);
 
 
 
-
-
-
 // -----------------------
 // Swagger Setup
 // -----------------------

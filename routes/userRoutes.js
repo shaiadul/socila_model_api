@@ -77,10 +77,10 @@
  *               email:
  *                 type: string
  *                 format: email
- *                 example: "user@example.com"
+ *                 example: "user@gmail.com"
  *               password:
  *                 type: string
- *                 example: "123456"
+ *                 example: "*****"
  *     responses:
  *       200:
  *         description: User logged in successfully
