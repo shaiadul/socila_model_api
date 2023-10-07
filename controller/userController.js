@@ -37,7 +37,7 @@ export const createUser = async (req, res) => {
                 action: {
                     instructions: "To get started with OlaDev Social Media, please click here:",
                     button: {
-                        color: "#34495E", // Optional action button color
+                        color: "#34495E", // action button color
                         text: "Confirm your account",
                         link: `http://localhost:3000/confirm/${req.body.email}`,
                     },
