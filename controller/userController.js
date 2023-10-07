@@ -55,7 +55,7 @@ export const createUser = async (req, res) => {
                 action: {
                     instructions: "To get started with OlaDev Social Media, please click here:",
                     button: {
-                        color: "#22BC66", // Optional action button color
+                        color: "#34495E", // Optional action button color
                         text: "Confirm your account",
                         link: `http://localhost:3000/confirm/${req.body.email}`,
                     },
@@ -81,7 +81,6 @@ export const createUser = async (req, res) => {
             res.status(200).json({message: "Email sent successfully !", "message_id": info.messageId});
         }
         );
-
         // -----------------------
         // node mailer setup end
         // -----------------------
@@ -139,7 +138,6 @@ export const deleteUserById = async (req, res) => {
         res.status(400).json({message: error.message});
     }
 }
-
 
 export const updateUserById = async (req, res) => {
     try {
