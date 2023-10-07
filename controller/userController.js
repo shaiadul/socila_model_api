@@ -3,7 +3,9 @@ import Jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
 import bcrypt, { hash } from "bcrypt";
 import User from "../model/userModels.js";
+import dotenv from "dotenv";
 
+dotenv.config();
 
 export const createUser = async (req, res) => {
     try {
@@ -74,7 +76,7 @@ export const createUser = async (req, res) => {
         });
         const saveData = await userData.save();
         res.status(200).json(saveData);
-        
+
     } catch (error) {
         res.status(500).json({message: error.message});
     }
