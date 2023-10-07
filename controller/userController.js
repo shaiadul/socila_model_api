@@ -5,28 +5,8 @@ import bcrypt, { hash } from "bcrypt";
 import User from "../model/userModels.js";
 
 
-const transporter = nodemailer.createTransport({
-    host: "smtp.forwardemail.net",
-    port: 465,
-    secure: true,
-    auth: {
-      // TODO: replace `user` and `pass` values from <https://forwardemail.net>
-      user: "REPLACE-WITH-YOUR-ALIAS@YOURDOMAIN.COM",
-      pass: "REPLACE-WITH-YOUR-GENERATED-PASSWORD",
-    },
-  });
-
 export const createUser = async (req, res) => {
     try {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        const userData = await new User({
-            name: req.body.name, 
-            email: req.body.email,
-            password: hashedPassword,
-            status: req.body.status,
-        });
-        const saveData = await userData.save();
-        res.status(200).json(saveData);
         // -----------------------
         // node mailer setup
         // -----------------------
@@ -85,6 +65,16 @@ export const createUser = async (req, res) => {
         // node mailer setup end
         // -----------------------
 
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        const userData = await new User({
+            name: req.body.name, 
+            email: req.body.email,
+            password: hashedPassword,
+            status: req.body.status,
+        });
+        const saveData = await userData.save();
+        res.status(200).json(saveData);
+        
     } catch (error) {
         res.status(500).json({message: error.message});
     }
