@@ -73,6 +73,15 @@ const option = {
         description: 'Production server',
      }
    ],
+   components: {
+    securitySchemes: {
+      apiKeyAuth: {
+        type: 'apiKey',
+        in: 'header', // You can also use 'query' or 'cookie'
+        name: 'Authorization', // The name of the header, query parameter, or cookie to be used for the API key
+      },
+    },
+  },
   },
   apis: ['./routes/*.js'],
 };
