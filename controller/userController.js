@@ -1,3 +1,4 @@
+import Mailgen from "mailgen";
 import Jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
 import bcrypt, { hash } from "bcrypt";
@@ -26,6 +27,65 @@ export const createUser = async (req, res) => {
         });
         const saveData = await userData.save();
         res.status(200).json(saveData);
+        // -----------------------
+        // node mailer setup
+        // -----------------------
+        const config = {
+            service: "gmail",
+            auth: {
+                user: `${process.env.APP_EMAIL}`,
+                pass: `${process.env.APP_EMAIL_PASSWORD}`,
+            },
+        };
+
+        const transporter = nodemailer.createTransport(config);
+      
+        const mailGenerator = new Mailgen({
+            theme: "default",
+            product: {
+                name: "OlaDev Social Media",
+                link: `oladev.com.bd`,
+            },
+        });
+
+        const email = {
+            body: {
+                name: req.body.name,
+                intro: "Welcome to OlaDev Social Media ! We're very excited to have you on board.",
+                action: {
+                    instructions: "To get started with OlaDev Social Media, please click here:",
+                    button: {
+                        color: "#22BC66", // Optional action button color
+                        text: "Confirm your account",
+                        link: `http://localhost:3000/confirm/${req.body.email}`,
+                    },
+                },
+                outro: "Need help, or have questions? Just reply to this email, we'd love to help.",
+            },
+        };
+
+        const emailBody = mailGenerator.generate(email);
+
+        const message = {
+            from: `${process.env.APP_EMAIL}`,
+            to: req.body.email,
+            subject: "Welcome to OlaDev Social Media",
+            html: emailBody,
+        };
+
+        transporter.sendMail(message, (err, info) => {
+            if (err) {
+                res.status(500).json({message: err.message});
+                return process.exit(1);
+            }
+            res.status(200).json({message: "Email sent successfully !", "message_id": info.messageId});
+        }
+        );
+
+        // -----------------------
+        // node mailer setup end
+        // -----------------------
+
     } catch (error) {
         res.status(500).json({message: error.message});
     }
