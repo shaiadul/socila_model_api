@@ -1,6 +1,19 @@
-import User from "../model/userModels.js";
+import Jwt from "jsonwebtoken";
+import nodemailer from "nodemailer";
 import bcrypt, { hash } from "bcrypt";
-import  Jwt  from "jsonwebtoken";
+import User from "../model/userModels.js";
+
+
+const transporter = nodemailer.createTransport({
+    host: "smtp.forwardemail.net",
+    port: 465,
+    secure: true,
+    auth: {
+      // TODO: replace `user` and `pass` values from <https://forwardemail.net>
+      user: "REPLACE-WITH-YOUR-ALIAS@YOURDOMAIN.COM",
+      pass: "REPLACE-WITH-YOUR-GENERATED-PASSWORD",
+    },
+  });
 
 export const createUser = async (req, res) => {
     try {
