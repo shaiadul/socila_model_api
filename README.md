@@ -1,6 +1,7 @@
-# Social Media Website
+# OlaDev Social Media Website
 
-![[Project Logo](https://devshaiadul.com/wp-content/uploads/2023/08/localhost_3000_login.png)] <!-- Include a project logo or relevant image if available -->
+![Project Logo](https://moneymint.com/wp-content/uploads/2021/08/Top-100-Social-Media-Sites-Platforms.jpg)
+
 
 ## Table of Contents
 - [Overview](#overview)
