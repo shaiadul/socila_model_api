@@ -1,6 +1,6 @@
 # OlaDev Social Media Website
 
-![Project Logo](https://moneymint.com/wp-content/uploads/2021/08/Top-100-Social-Media-Sites-Platforms.jpg)
+![Project Logo](https://www.perpetualmediagroup.ca/wp-content/uploads/2017/02/Advantages-of-Social-Media.jpg)
 
 
 ## Table of Contents
