@@ -1,6 +1,6 @@
 # Social Media Website
 
-![Project Logo](logo.png) <!-- Include a project logo or relevant image if available -->
+![Project Logo](https://devshaiadul.com/wp-content/uploads/2023/08/localhost_3000_login.png) <!-- Include a project logo or relevant image if available -->
 
 ## Table of Contents
 - [Overview](#overview)
