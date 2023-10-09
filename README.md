@@ -30,11 +30,6 @@ Before you begin, ensure you have met the following requirements:
 - MongoDB or another database system set up
 - Any additional prerequisites specific to your project
 
-## Getting Started
-To get started with this project, follow these steps:
 
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/yourusername/social-media-website.git
-   cd social-media-website
+
 
