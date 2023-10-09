@@ -1,6 +1,6 @@
 # OlaDev Social Media Website
 
-![Project Logo](https://www.perpetualmediagroup.ca/wp-content/uploads/2017/02/Advantages-of-Social-Media.jpg)
+![Project Logo](https://i.ibb.co/kD7vs27/OlaDev.png)
 
 
 ## Table of Contents
