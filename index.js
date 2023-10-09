@@ -48,9 +48,9 @@ app.use('/api/v1/posts', postRoutes);
 
 
 
-// -----------------------
-// Swagger Setup
-// -----------------------
+// ------------------------
+// Swagger Setup 
+// ------------------------
 const option = {
   swaggerDefinition: {
    openapi: '3.0.0',
