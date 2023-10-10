@@ -1,6 +1,7 @@
-# Social Media Website
+# OlaDev Social Media Website
 
-![Project Logo](https://devshaiadul.com/wp-content/uploads/2023/08/localhost_3000_login.png) <!-- Include a project logo or relevant image if available -->
+![Project Logo](https://i.ibb.co/kD7vs27/OlaDev.png)
+
 
 ## Table of Contents
 - [Overview](#overview)
