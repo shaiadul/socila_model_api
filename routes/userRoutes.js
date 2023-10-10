@@ -53,6 +53,10 @@
  *               email: "newuser@example.com"
  *               password: "123456"
  *               status: "active"
+ *               verified: false
+ *               profileImage: "https://res.cloudinary.com/dkkgmzpqd/image/upload/v1628164590/ProfileImages/defaultProfileImage.png"
+ *               coverImage: "https://res.cloudinary.com/dkkgmzpqd/image/upload/v1628164590/CoverImages/defaultCoverImage.png"
+ * 
  *       400:
  *         description: Bad request, invalid user data
  *       500:

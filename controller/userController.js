@@ -73,6 +73,10 @@ export const createUser = async (req, res) => {
             email: req.body.email,
             password: hashedPassword,
             status: req.body.status,
+            verified: req.body.verified,
+            profileImage: req.body.profileImage,
+            coverImage: req.body.coverImage,
+            friendList: req.body.friendList,
         });
         const saveData = await userData.save();
         res.status(200).json(saveData);
