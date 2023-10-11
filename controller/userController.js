@@ -39,7 +39,7 @@ export const createUser = async (req, res) => {
                     button: {
                         color: "#34495E", // action button color
                         text: "Confirm your account",
-                        link: `https://crimson-anemone-vest.cyclic.app/api/v1/users/verified${req.body.email}`,
+                        link: `https://crimson-anemone-vest.cyclic.app/api/v1/users/verified/${req.body.email}`,
                     },
                 },
                 outro: "Need help, or have questions? Just reply to this email, we'd love to help.",
