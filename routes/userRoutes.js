@@ -18,6 +18,33 @@
  *         password:
  *           type: string
  *           description: Password of the user
+ *         status:
+ *           type: string
+ *           description: Status of the user
+ *         verified:
+ *           type: boolean
+ *           description: Verification of the user
+ *         profileImage:
+ *           type: string
+ *           description: Profile image of the user
+ *         coverImage:
+ *           type: string
+ *           description: Cover image of the user
+ *         profession:
+ *           type: string
+ *           description: Profession of the user
+ *         location:
+ *           type: string
+ *           description: Location of the user
+ *         bio:
+ *           type: string
+ *           description: Bio of the user
+ *         relationship:
+ *           type: string
+ *           description: Relationship of the user
+ *         friendList:
+ *           type: array
+ *           description: Friend list of the user
  *      
  */
 
