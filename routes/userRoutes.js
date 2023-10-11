@@ -192,9 +192,9 @@
  *         schema:
  *           type: string
  *     responses:
- *       204:
+ *       200:
  *         description: User deleted successfully
- *       404:
+ *       400:
  *         description: User not found
  *       500:
  *         description: Internal server error
