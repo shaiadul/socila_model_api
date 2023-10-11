@@ -33,7 +33,7 @@ export const createUser = async (req, res) => {
         const email = {
             body: {
                 name: req.body.name,
-                intro: "Welcome to OlaDev Social Media ! We're very excited to have you on board.",
+                intro: "Welcome to OlaDev Social Media ! We're very excited to have you on board. ",
                 action: {
                     instructions: "To get started with OlaDev Social Media, please click here:",
                     button: {
@@ -125,7 +125,6 @@ export const verifiedUser = async (req, res) => {
         res.status(401).json({message: error.message});
     }
 }
-
 
 export const getAllUsers = async (req, res) => {
     try {
