@@ -26,7 +26,7 @@ export const createUser = async (req, res) => {
             theme: "default",
             product: {
                 name: "OlaDev Social Media",
-                link: `oladev.com.bd`,
+                link: `oladev-v1.onrender.com`,
             },
         });
 
