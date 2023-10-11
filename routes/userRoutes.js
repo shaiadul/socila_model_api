@@ -106,6 +106,34 @@
 
 /**
  * @swagger
+ * /api/v1/users/verified/{email}:
+ *   patch:
+ *     summary: Verify a user by email
+ *     tags:
+ *       - Users
+ *     parameters:
+ *       - name: email
+ *         in: path
+ *         description: Email of the user to verify
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: User verified successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User' # Replace with the schema for user data
+ *       404:
+ *         description: User not found
+ *       401:
+ *         description: Unauthorized
+ */
+
+
+/**
+ * @swagger
  * /api/v1/users/get:
  *   get:
  *     summary: Get all users
@@ -203,13 +231,14 @@
 
 
 import  express  from "express";
-import { createUser, deleteUserById, getAllUsers, getUserById, loginUser, updateUserById } from "../controller/userController.js";
+import { createUser, deleteUserById, getAllUsers, getUserById, loginUser, updateUserById, verifiedUser } from "../controller/userController.js";
 import { checkLogin } from "../middlewares/checkLogin.js";
 
 const userRoutes = express.Router();
 
 userRoutes.post('/create', createUser);
 userRoutes.post('/login', loginUser);
+userRoutes.use('/verified/:email', verifiedUser);
 userRoutes.get('/get', getAllUsers);
 userRoutes.get('/get/:id', getUserById);
 userRoutes.delete('/delete/:id', deleteUserById);

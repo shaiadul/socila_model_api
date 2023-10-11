@@ -76,6 +76,9 @@ export const createUser = async (req, res) => {
             verified: req.body.verified,
             profileImage: req.body.profileImage,
             coverImage: req.body.coverImage,
+            profession: req.body.profession,
+            location: req.body.location,
+            bio: req.body.bio,
             friendList: req.body.friendList,
         });
         const saveData = await userData.save();
@@ -107,6 +110,22 @@ export const loginUser = async (req, res) => {
         res.status(401).json({message: error.message});
     }
 }
+
+export const verifiedUser = async (req, res) => {
+    try {
+        const person = await User.find({email: req.params.email});
+        if(person && person.length > 0){
+            const userData = await User.findByIdAndUpdate(person[0]._id, {verified: true}, {new: true});
+            res.status(200).json(userData);
+        }
+        else{
+            res.status(404).json({message: "User not found !"});
+        }
+    } catch (error) {
+        res.status(401).json({message: error.message});
+    }
+}
+
 
 export const getAllUsers = async (req, res) => {
     try {
@@ -143,6 +162,13 @@ export const updateUserById = async (req, res) => {
             email: req.body.email,
             password: req.body.password,
             status: req.body.status,
+            verified: req.body.verified,
+            bio: req.body.bio,
+            profession: req.body.profession,
+            location: req.body.location,
+            profileImage: req.body.profileImage,
+            coverImage: req.body.coverImage,
+            friendList: req.body.friendList,
         };
 
         const updatedUser = await User.findByIdAndUpdate(userId, updatedUserData, { new: true });
