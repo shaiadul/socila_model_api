@@ -6,7 +6,6 @@ import User from "../model/userModels.js";
 
 
 
- // Generate a unique OTP token
  const generateOtp = () => {
     const digits = "0123456789";
     let otp = "";
@@ -17,7 +16,25 @@ import User from "../model/userModels.js";
 }
 
 export const createUser = async (req, res) => {
-    try {
+    try { 
+        
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        const userData = await new User({
+            name: req.body.name, 
+            email: req.body.email,
+            password: hashedPassword,
+            status: req.body.status,
+            verified: req.body.verified,
+            profileImage: req.body.profileImage,
+            coverImage: req.body.coverImage,
+            profession: req.body.profession,
+            location: req.body.location,
+            bio: req.body.bio,
+            friendList: req.body.friendList,
+        });
+        const saveData = await userData.save();
+        res.status(200).json(saveData);
+
         // -----------------------
         // node mailer setup
         // -----------------------
@@ -75,24 +92,6 @@ export const createUser = async (req, res) => {
         // -----------------------
         // node mailer setup end
         // -----------------------
-
-        const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        const userData = await new User({
-            name: req.body.name, 
-            email: req.body.email,
-            password: hashedPassword,
-            status: req.body.status,
-            verified: req.body.verified,
-            profileImage: req.body.profileImage,
-            coverImage: req.body.coverImage,
-            profession: req.body.profession,
-            location: req.body.location,
-            bio: req.body.bio,
-            friendList: req.body.friendList,
-        });
-        const saveData = await userData.save();
-        res.status(200).json(saveData);
-
     } catch (error) {
         res.status(500).json({message: error.message});
     }
@@ -135,7 +134,6 @@ export const verifiedUser = async (req, res) => {
     }
 }
 
-
 export const forgotPassword = async (req, res) => {
     try {
         const person = await User.findOne({ email: req.params.email });
@@ -171,7 +169,7 @@ export const forgotPassword = async (req, res) => {
                         button: {
                             color: "#34495E",
                             text: `${otp}`,
-                            link: `https://crimson-anemone-vest.cyclic.app/api/v1/users/resetpassword/`,
+                            link: `#`,
                         },
                     },
                     outro: "Need help or have questions? Just reply to this email; we'd love to help.",
@@ -198,6 +196,36 @@ export const forgotPassword = async (req, res) => {
     }
 };
 
+export const resetPassword = async (req, res) => {
+    try {
+        // Retrieve the password reset token and the new password from the request body
+        const { passwordResetToken, newPassword } = req.body;
+
+        // Check if the token matches the one stored in the cookie
+        const storedToken = req.cookies.passwordResetToken;
+
+        if (passwordResetToken === storedToken) {
+            // Token is valid, proceed to update the user's password
+            const email = req.params.email; // Assuming you have the user's email
+
+            // Update the user's password in the database
+            // For example, using Mongoose, you can do:
+            // const user = await User.findOne({ email });
+            // user.password = newPassword;
+            // await user.save();
+
+            // Clear the password reset token from the cookie
+            res.clearCookie('passwordResetToken');
+
+            // Respond with a success message
+            res.status(200).json({ message: 'Password reset successful.' });
+        } else {
+            res.status(400).json({ message: 'Invalid or expired password reset token.' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
 
 export const getAllUsers = async (req, res) => {
     try {
