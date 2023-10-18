@@ -17,23 +17,7 @@ import User from "../model/userModels.js";
 
 export const createUser = async (req, res) => {
     try { 
-        
-        const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        const userData = await new User({
-            name: req.body.name, 
-            email: req.body.email,
-            password: hashedPassword,
-            status: req.body.status,
-            verified: req.body.verified,
-            profileImage: req.body.profileImage,
-            coverImage: req.body.coverImage,
-            profession: req.body.profession,
-            location: req.body.location,
-            bio: req.body.bio,
-            friendList: req.body.friendList,
-        });
-        const saveData = await userData.save();
-        res.status(200).json(saveData);
+       
 
         // -----------------------
         // node mailer setup
@@ -91,7 +75,24 @@ export const createUser = async (req, res) => {
         );
         // -----------------------
         // node mailer setup end
-        // -----------------------
+        // ----------------------- 
+        
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        const userData = await new User({
+            name: req.body.name, 
+            email: req.body.email,
+            password: hashedPassword,
+            status: req.body.status,
+            verified: req.body.verified,
+            profileImage: req.body.profileImage,
+            coverImage: req.body.coverImage,
+            profession: req.body.profession,
+            location: req.body.location,
+            bio: req.body.bio,
+            friendList: req.body.friendList,
+        });
+        const saveData = await userData.save();
+        res.status(200).json(saveData);
     } catch (error) {
         res.status(500).json({message: error.message});
     }
