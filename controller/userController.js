@@ -140,10 +140,10 @@ export const forgotPassword = async (req, res) => {
     try {
         const person = await User.findOne({ email: req.params.email });
 
-
         if (person) {
 
             const otp = generateOtp();
+            res.cookie('passwordResetToken', otp, { maxAge: 900000, httpOnly: true });
 
             const config = {
                 service: "gmail",
