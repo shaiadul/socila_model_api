@@ -131,6 +131,29 @@
  *         description: Unauthorized
  */
 
+/**
+ * @swagger
+ * /api/v1/users/forgotpassword/{email}:
+ *   post:
+ *     summary: Request a password reset email
+ *     tags:
+ *       - Users
+ *     parameters:
+ *       - name: email
+ *         in: path
+ *         description: User's email for password reset
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Password reset email sent successfully
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Internal server error
+ */
+
 
 /**
  * @swagger
@@ -231,7 +254,7 @@
 
 
 import  express  from "express";
-import { createUser, deleteUserById, getAllUsers, getUserById, loginUser, updateUserById, verifiedUser } from "../controller/userController.js";
+import { createUser, deleteUserById, forgotPassword, getAllUsers, getUserById, loginUser, updateUserById, verifiedUser } from "../controller/userController.js";
 import { checkLogin } from "../middlewares/checkLogin.js";
 
 const userRoutes = express.Router();
@@ -239,6 +262,7 @@ const userRoutes = express.Router();
 userRoutes.post('/create', createUser);
 userRoutes.post('/login', loginUser);
 userRoutes.use('/verified/:email', verifiedUser);
+userRoutes.post('/forgotpassword/:email', forgotPassword);
 userRoutes.get('/get', getAllUsers);
 userRoutes.get('/get/:id', getUserById);
 userRoutes.delete('/delete/:id', deleteUserById);
