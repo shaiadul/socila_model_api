@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
     location: {type: String, default: ""},
     bio: {type: String, default: ""},
     relationship: {type: String, enum: ["single", "married", "divorced", "complicated"], default: "single"},    
-    friendList: [{type: String, default: []}],
+    friendList: {type: Array, unique:true, default: [0]},
 })
 
 export default mongoose.model("User", userSchema);
