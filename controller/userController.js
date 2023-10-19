@@ -89,7 +89,6 @@ export const createUser = async (req, res) => {
         // -----------------------
         // node mailer setup end
         // ----------------------- 
-
        
         const saveData = await userData.save();
         res.status(200).json(saveData);
