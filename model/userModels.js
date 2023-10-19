@@ -11,8 +11,8 @@ const userSchema = new mongoose.Schema({
     profession: {type: String, default: ""},
     location: {type: String, default: ""},
     bio: {type: String, default: ""},
-    relationship: {type: String, enum: ["single", "married", "divorced", "complicated"], default: "single"},    
-    friendList: {type: Array, unique:true, default: [0]},
+    relationship: {type: String, enum: ["single", "married", "divorced", "complicated"], default: "single"},  
+    friendList: [{type: mongoose.Schema.Types.ObjectId, ref: "User", default: []}],
 })
 
 export default mongoose.model("User", userSchema);
