@@ -4,10 +4,10 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import swaggerJSDoc from 'swagger-jsdoc';
+import cookieParser from 'cookie-parser';
 import swaggerUi from 'swagger-ui-express';
 import userRoutes from './routes/userRoutes.js';
 import postRoutes from './routes/postRoutes.js';
-
 
 
 const app = express();
@@ -17,6 +17,7 @@ const mongoURI = `mongodb+srv://mdshaiadul:${process.env.MONGODB_PASSWORD}@shaia
 
 // Middleware
 app.use(cors());
+app.use(cookieParser());
 app.use(bodyParser.json());
 // Connect to MongoDB 
 mongoose

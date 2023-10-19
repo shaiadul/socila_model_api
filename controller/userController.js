@@ -198,27 +198,28 @@ export const forgotPassword = async (req, res) => {
 
 export const resetPassword = async (req, res) => {
     try {
-        // Retrieve the password reset token and the new password from the request body
-        const { passwordResetToken, newPassword } = req.body;
+        const passwordResetToken = req.body.passwordResetToken;
+        const newPassword = await bcrypt.hash(req.body.newPassword, 10);
 
-        // Check if the token matches the one stored in the cookie
+
         const storedToken = req.cookies.passwordResetToken;
 
         if (passwordResetToken === storedToken) {
-            // Token is valid, proceed to update the user's password
-            const email = req.params.email; // Assuming you have the user's email
 
-            // Update the user's password in the database
-            // For example, using Mongoose, you can do:
-            // const user = await User.findOne({ email });
-            // user.password = newPassword;
-            // await user.save();
+            const email = req.body.email; 
 
-            // Clear the password reset token from the cookie
-            res.clearCookie('passwordResetToken');
+            const user = await User.findOne({ email });
 
-            // Respond with a success message
-            res.status(200).json({ message: 'Password reset successful.' });
+            if (user) {
+                // Update the user's password
+                user.password = newPassword;
+
+                await user.save();
+                res.clearCookie('passwordResetToken');
+                res.status(200).json({ message: 'Password reset successful.' });
+            } else {
+                res.status(404).json({ message: 'User not found.' });
+            }
         } else {
             res.status(400).json({ message: 'Invalid or expired password reset token.' });
         }

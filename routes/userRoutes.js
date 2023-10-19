@@ -154,6 +154,42 @@
  *         description: Internal server error
  */
 
+/**
+ * @swagger
+ * /api/v1/users/resetpassword/{email}:
+ *   post:
+ *     summary: Reset user's password with a valid token
+ *     tags:
+ *       - Users
+ *     requestBody:
+ *       description: Password reset request
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 format: email
+ *                 description: The user's email
+ *               passwordResetToken:
+ *                 type: string
+ *                 description: The password reset token received via email
+ *               newPassword:
+ *                 type: string
+ *                 description: The new password to set
+ *     responses:
+ *       200:
+ *         description: Password reset successful
+ *       400:
+ *         description: Invalid or expired password reset token
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Internal server error
+ */
+
 
 /**
  * @swagger
@@ -254,7 +290,7 @@
 
 
 import  express  from "express";
-import { createUser, deleteUserById, forgotPassword, getAllUsers, getUserById, loginUser, updateUserById, verifiedUser } from "../controller/userController.js";
+import { createUser, deleteUserById, forgotPassword, getAllUsers, getUserById, loginUser, resetPassword, updateUserById, verifiedUser } from "../controller/userController.js";
 import { checkLogin } from "../middlewares/checkLogin.js";
 
 const userRoutes = express.Router();
@@ -263,6 +299,7 @@ userRoutes.post('/create', createUser);
 userRoutes.post('/login', loginUser);
 userRoutes.use('/verified/:email', verifiedUser);
 userRoutes.post('/forgotpassword/:email', forgotPassword);
+userRoutes.post('/resetpassword/:email', resetPassword);
 userRoutes.get('/get', getAllUsers);
 userRoutes.get('/get/:id', getUserById);
 userRoutes.delete('/delete/:id', deleteUserById);
