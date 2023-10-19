@@ -32,7 +32,6 @@ export const createUser = async (req, res) => {
             bio: req.body.bio,
             friendList: req.body.friendList
         });
-        
         // -----------------------
         // node mailer setup
         // -----------------------
