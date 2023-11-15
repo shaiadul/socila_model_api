@@ -29,7 +29,7 @@ This is a social media website project that allows users to connect with friends
 Before you begin, ensure you have met the following requirements:
 - Node.js and npm installed.
 - MongoDB or another database system setup done.
-- Any additional prerequisites specific to your project.
+- Any additional prerequisites specific to your project
 
 
 
